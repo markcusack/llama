@@ -147,6 +147,7 @@ public class LlamaAMServiceImpl implements LlamaAMService.Iface {
   // Visible for testing
   String assignToQueue(TLlamaAMReservationRequest request)
       throws LlamaException {
+
     // Default means no queue requested
     String requestedQueue = (request.isSetQueue()) ? request.getQueue()
         : YarnConfiguration.DEFAULT_QUEUE_NAME;
@@ -154,6 +155,8 @@ public class LlamaAMServiceImpl implements LlamaAMService.Iface {
       requestedQueue = YarnConfiguration.DEFAULT_QUEUE_NAME;
     }
     String user = request.getUser();
+    String queue = requestedQueue;
+/* MAC
     String queue;
     try {
       queue = allocConf.get().getPlacementPolicy()
@@ -165,6 +168,7 @@ public class LlamaAMServiceImpl implements LlamaAMService.Iface {
       throw new LlamaException(
           ErrorCode.RESERVATION_USER_TO_QUEUE_MAPPING_NOT_FOUND, user, requestedQueue);
     }
+*/
     LOG.debug("Reservation from user " + user + " with requested queue " +
         requestedQueue + " resolved to queue " + queue);
     
@@ -174,6 +178,7 @@ public class LlamaAMServiceImpl implements LlamaAMService.Iface {
   // Visible for testing
   void checkAccess(String user, String queue, String requestedQueue)
       throws LlamaException {
+/*
     UserGroupInformation ugi;
     try {
       ugi = UserGroupInformation.createProxyUser(user,
@@ -181,10 +186,13 @@ public class LlamaAMServiceImpl implements LlamaAMService.Iface {
     } catch (IOException ex) {
       throw new LlamaException(ex, ErrorCode.INTERNAL_ERROR);
     }
+
     if (!allocConf.get().hasAccess(queue, QueueACL.SUBMIT_APPLICATIONS, ugi)) {
       throw new LlamaException(ErrorCode.RESERVATION_USER_NOT_ALLOWED_IN_QUEUE,
           user, requestedQueue, queue);
+
     }
+*/
   }
 
   @Override

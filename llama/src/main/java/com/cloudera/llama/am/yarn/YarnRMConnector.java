@@ -358,9 +358,11 @@ public class YarnRMConnector implements RMConnector, Configurable,
       appContext.setApplicationId(appId);
 
       // set the application name
-      appContext.setApplicationName("Llama for " + queue);
+      //appContext.setApplicationName("Llama for " + queue);
+      appContext.setApplicationName("RainStor for " + queue);
 
-      appContext.setApplicationType(appType);
+      //appContext.setApplicationType(appType);
+      appContext.setApplicationType("RAINSTOR");
 
       // Set the priority for the application master
       Priority pri = Records.newRecord(Priority.class);

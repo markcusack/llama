@@ -162,6 +162,7 @@ public class LlamaAMServer extends
           YarnConfiguration.DELEGATION_TOKEN_RENEW_INTERVAL_DEFAULT);
       LlamaAM.RM_CONNECTOR_RECYCLE_INTERVAL_DEFAULT = renewInterval * 3 / 4;
 
+/* MAC
       allocConf = new AtomicReference<AllocationConfiguration>();
       allocsLoader = new AllocationFileLoaderService();
       allocsLoader.init(yarnConf);
@@ -180,6 +181,7 @@ public class LlamaAMServer extends
       if (allocConf.get() == null) {
         allocConf.set(new AllocationConfiguration(yarnConf));
       }
+*/
 
       getConf().set(YarnRMConnector.ADVERTISED_HOSTNAME_KEY,
           ThriftEndPoint.getServerAddress(getServerConf()));
